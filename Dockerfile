@@ -32,6 +32,8 @@ EXPOSE 20
 EXPOSE 21
 
 ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
+RUN chmod a+x ./entrypoint.sh
+
 ENTRYPOINT ["/usr/local/sbin/docker-entrypoint.sh"]
 
 CMD ["/usr/local/sbin/proftpd", "-n", "-c", "/usr/local/etc/proftpd.conf" ]
