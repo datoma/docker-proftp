@@ -28,7 +28,8 @@ RUN set -x \
     && make clean \
     && apk del .build-deps
 
-EXPOSE 20, 21
+EXPOSE 20
+EXPOSE 21
 
 ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
 ENTRYPOINT ["/usr/local/sbin/docker-entrypoint.sh"]
