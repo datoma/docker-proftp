@@ -1,6 +1,11 @@
 # docker-proftp
 proftp as docker
 
+## build
+    docker build -t proftpd .
+## run
+    docker run --name proftpd --net=traefik_internal -e FTP_LIST=user1:passw1 -e USERADD_OPTIONS=-o --gid 33 --uid 33 -v data:/home/user1 -d proftpd
+
 ## docker-compose
     version: '3.7'
     
