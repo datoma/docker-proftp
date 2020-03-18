@@ -21,3 +21,6 @@ proftp as docker
         restart: always
     volumes:
       proftp_data:
+
+## test
+    curl -v --ssl --insecure --disable-epsv ftp://myhost.de:21 -u user1:passw1
