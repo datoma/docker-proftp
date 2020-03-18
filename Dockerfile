@@ -9,11 +9,8 @@ ENV PROFTPD_DEPS \
   make
 
 RUN set -x \
-    && apk add --no-cache --virtual .persistent-deps \
-        ca-certificates \
-        curl \
-    && apk add --no-cache --virtual .build-deps \
-        $PROFTPD_DEPS \
+    && apk add --no-cache --virtual .persistent-deps bash ca-certificates curl perl \
+    && apk add --no-cache --virtual .build-deps $PROFTPD_DEPS \
     && curl -fSL ftp://ftp.proftpd.org/distrib/source/proftpd-${PROFTPD_VERSION}.tar.gz -o proftpd.tgz \
     && tar -xf proftpd.tgz \
     && rm proftpd.tgz \
