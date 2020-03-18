@@ -31,8 +31,9 @@ RUN set -x \
 EXPOSE 20
 EXPOSE 21
 
+
 ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
-RUN chmod a+x ./entrypoint.sh
+RUN chmod a+x /usr/local/sbin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/sbin/docker-entrypoint.sh"]
 
