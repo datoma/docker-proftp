@@ -12,7 +12,8 @@ if [ -n "$FTP_LIST" ]; then
 		mkdir /home/$ftp_login
                 addgroup -S $ftp_login
 #                echo "$CRYPTED_PASSWORD\n$CRYPTED_PASSWORD" | adduser -S $ftp_login -G $ftp_login -h /home/$ftp_login
-                echo "$ftp_pass\n$ftp_pass" | adduser -S $ftp_login -G $ftp_login -h /home/$ftp_login -s /bin/sh
+                adduser -S $ftp_login -G $ftp_login -h /home/$ftp_login -s /bin/sh
+		echo $ftp_login:$ftp_pass | chpasswd
 		chown -R $ftp_login:$ftp_login /home/$ftp_login
 	done
 fi
