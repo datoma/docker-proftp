@@ -1,0 +1,34 @@
+version: "3.7"
+
+networks:
+  traefik_internal:
+    name: ${TRAEFIK_INTERNAL_NETWORK}
+    driver: bridge
+
+services:
+# ftp server
+  vsftpd:
+    image: datoma/proftp
+    container_name: proftp
+    environment:
+      FTP_LIST: "user1:passw1, user2:passw2"
+      USERADD_OPTIONS: "-o --gid 33 --uid 33"
+    volumes:
+      - "proftp_data:/home"
+    ports:
+      - "21:21"
+    networks:
+      - "${TRAEFIK_INTERNAL_NETWORK}"
+    labels:
+        #      - "traefik.enable=true"
+        #      - "traefik.http.routers.proftp.tls=false"
+        #      - "traefik.http.routers.proftp.entrypoints=web_secure"
+        #      - "traefik.http.routers.proftp.rule=Host(`ftp.${PRIMARY_DOMAIN}`)"
+        #      - "traefik.http.routers.proftp.middlewares=redirect-https@file"
+        #      - "traefik.http.services.proftp.loadbalancer.server.port=21"
+      - "com.centurylinklabs.watchtower.enable: true"
+    restart: always
+
+# volumes
+volumes:
+  proftp_data:
